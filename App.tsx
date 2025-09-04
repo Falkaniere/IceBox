@@ -1,7 +1,9 @@
+if (__DEV__) {
+  require('./ReactotronConfig');
+}
+
 import { StatusBar, useColorScheme } from 'react-native';
-import {
-  SafeAreaProvider,
-} from 'react-native-safe-area-context';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import Index from './src';
 
 function App() {

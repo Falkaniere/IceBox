@@ -3,8 +3,6 @@ import Emoji from 'react-native-emoji';
 
 import { styles } from './styles';
 
-jest.mock('react-native-emoji', () => 'Emoji');
-
 function Header() {
   return (
     <View style={styles.header}>
