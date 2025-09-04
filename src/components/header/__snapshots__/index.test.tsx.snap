@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render header component correctly 1`] = `
+<View
+  style={
+    {
+      "alignItems": "center",
+      "flexDirection": "row",
+      "justifyContent": "space-between",
+    }
+  }
+>
+  <Text
+    style={
+      {
+        "fontSize": 24,
+        "fontWeight": "bold",
+      }
+    }
+  >
+    My Fridge
+  </Text>
+  <View
+    style={
+      {
+        "flexDirection": "row",
+      }
+    }
+  >
+    <Emoji
+      name="add"
+    />
+    <Emoji
+      name="options"
+    />
+  </View>
+</View>
+`;

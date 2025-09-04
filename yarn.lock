@@ -1236,6 +1236,11 @@
   dependencies:
     "@jest/types" "^29.6.3"
 
+"@jest/diff-sequences@30.0.1":
+  version "30.0.1"
+  resolved "https://registry.yarnpkg.com/@jest/diff-sequences/-/diff-sequences-30.0.1.tgz#0ededeae4d071f5c8ffe3678d15f3a1be09156be"
+  integrity sha512-n5H8QLDJ47QqbCNn5SuFjCRDrOLEZ0h8vAHCK5RL9Ls7Xa8AQLa/YxAc9UjFqoEDM48muwtBGjtMY5cr0PLDCw==
+
 "@jest/environment@^29.7.0":
   version "29.7.0"
   resolved "https://registry.yarnpkg.com/@jest/environment/-/environment-29.7.0.tgz#24d61f54ff1f786f3cd4073b4b94416383baf2a7"
@@ -1272,6 +1277,11 @@
     jest-message-util "^29.7.0"
     jest-mock "^29.7.0"
     jest-util "^29.7.0"
+
+"@jest/get-type@30.1.0":
+  version "30.1.0"
+  resolved "https://registry.yarnpkg.com/@jest/get-type/-/get-type-30.1.0.tgz#4fcb4dc2ebcf0811be1c04fd1cb79c2dba431cbc"
+  integrity sha512-eMbZE2hUnx1WV0pmURZY9XoXPkUYjpc55mb0CrhtdWLtzMQPFvu/rZkTLZFTsdaVQa+Tr4eWAteqcUzoawq/uA==
 
 "@jest/globals@^29.7.0":
   version "29.7.0"
@@ -1312,6 +1322,13 @@
     string-length "^4.0.1"
     strip-ansi "^6.0.0"
     v8-to-istanbul "^9.0.1"
+
+"@jest/schemas@30.0.5":
+  version "30.0.5"
+  resolved "https://registry.yarnpkg.com/@jest/schemas/-/schemas-30.0.5.tgz#7bdf69fc5a368a5abdb49fd91036c55225846473"
+  integrity sha512-DmdYgtezMkh3cpU8/1uyXakv3tJRcmcXxBOcO0tbaozPwpmh4YMsnWrQm9ZmZMfa5ocbxzbFk6O4bDPEc/iAnA==
+  dependencies:
+    "@sinclair/typebox" "^0.34.0"
 
 "@jest/schemas@^29.6.3":
   version "29.6.3"
@@ -1728,6 +1745,13 @@
     "@pnpm/config.env-replace" "^1.1.0"
     "@pnpm/network.ca-file" "^1.0.1"
     config-chain "^1.1.11"
+
+"@react-native-async-storage/async-storage@^2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@react-native-async-storage/async-storage/-/async-storage-2.2.0.tgz#a3aa565253e46286655560172f4e366e8969f5ad"
+  integrity sha512-gvRvjR5JAaUZF8tv2Kcq/Gbt3JHwbKFYfmb445rhOj6NUMx3qPLixmDx5pZAyb9at1bYvJ4/eTUipU5aki45xw==
+  dependencies:
+    merge-options "^3.0.4"
 
 "@react-native-community/cli-clean@20.0.0":
   version "20.0.0"
@@ -2242,6 +2266,11 @@
   resolved "https://registry.yarnpkg.com/@sinclair/typebox/-/typebox-0.27.8.tgz#6667fac16c436b5434a387a34dedb013198f6e6e"
   integrity sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==
 
+"@sinclair/typebox@^0.34.0":
+  version "0.34.41"
+  resolved "https://registry.yarnpkg.com/@sinclair/typebox/-/typebox-0.34.41.tgz#aa51a6c1946df2c5a11494a2cdb9318e026db16c"
+  integrity sha512-6gS8pZzSXdyRHTIqoqSVknxolr1kzfy4/CeDnrzsVz8TTIWUbOBr6gnzOmTYJ3eXQNh4IYHIGi5aIL7sOZ2G/g==
+
 "@sindresorhus/is@^4.6.0":
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-4.6.0.tgz#3c7c9c46e678feefe7a2e5bb609d3dbd665ffb3f"
@@ -2270,6 +2299,16 @@
   integrity sha512-V4BG07kuYSUkTCSBHG8G8TNhM+F19jXFWnQtzj+we8DrkpSBCee9Z3Ms8yiGer/dlmhe35/Xdgyo3/0rQKg7YA==
   dependencies:
     "@sinonjs/commons" "^3.0.0"
+
+"@testing-library/react-native@^13.3.3":
+  version "13.3.3"
+  resolved "https://registry.yarnpkg.com/@testing-library/react-native/-/react-native-13.3.3.tgz#4bf02911c4e18075df40b5de0e029c209fb45bda"
+  integrity sha512-k6Mjsd9dbZgvY4Bl7P1NIpePQNi+dfYtlJ5voi9KQlynxSyQkfOgJmYGCYmw/aSgH/rUcFvG8u5gd4npzgRDyg==
+  dependencies:
+    jest-matcher-utils "^30.0.5"
+    picocolors "^1.1.1"
+    pretty-format "^30.0.5"
+    redent "^3.0.0"
 
 "@tufjs/canonical-json@2.0.0":
   version "2.0.0"
@@ -2759,7 +2798,7 @@ ansi-styles@^4.0.0, ansi-styles@^4.1.0:
   dependencies:
     color-convert "^2.0.1"
 
-ansi-styles@^5.0.0:
+ansi-styles@^5.0.0, ansi-styles@^5.2.0:
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/ansi-styles/-/ansi-styles-5.2.0.tgz#07449690ad45777d1924ac2abb2fc8895dba836b"
   integrity sha512-Cxwpt2SfTzTtXcfOlzGEee8O+c+MmUgGrNiBcXnuWxuFJHe6a5Hz7qwhwe5OgaSYI0IJvkLqWX1ASG+cJOkEiA==
@@ -5239,6 +5278,11 @@ is-obj@^2.0.0:
   resolved "https://registry.yarnpkg.com/is-obj/-/is-obj-2.0.0.tgz#473fb05d973705e3fd9620545018ca8e22ef4982"
   integrity sha512-drqDG3cbczxxEJRoOXcOjtdp1J/lyp1mNn0xaznRs8+muBhgQcrnbspox5X5fOw0HnMnbfDzvnEMEtqDEJEo8w==
 
+is-plain-obj@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/is-plain-obj/-/is-plain-obj-2.1.0.tgz#45e42e37fccf1f40da8e5f76ee21515840c09287"
+  integrity sha512-YWnfyRwxL/+SsrWYfOpUtz5b3YD+nyfkHvjbcanzk8zgyO4ASD67uVMRt8k5bM4lLMDnXfriRhOpemw+NfT1eA==
+
 is-plain-obj@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/is-plain-obj/-/is-plain-obj-4.1.0.tgz#d65025edec3657ce032fd7db63c97883eaed71f0"
@@ -5537,6 +5581,16 @@ jest-config@^29.7.0:
     slash "^3.0.0"
     strip-json-comments "^3.1.1"
 
+jest-diff@30.1.2:
+  version "30.1.2"
+  resolved "https://registry.yarnpkg.com/jest-diff/-/jest-diff-30.1.2.tgz#8ff4217e5b63fef49a5b37462999d8f5299a4eb4"
+  integrity sha512-4+prq+9J61mOVXCa4Qp8ZjavdxzrWQXrI80GNxP8f4tkI2syPuPrJgdRPZRrfUTRvIoUwcmNLbqEJy9W800+NQ==
+  dependencies:
+    "@jest/diff-sequences" "30.0.1"
+    "@jest/get-type" "30.1.0"
+    chalk "^4.1.2"
+    pretty-format "30.0.5"
+
 jest-diff@^29.7.0:
   version "29.7.0"
   resolved "https://registry.yarnpkg.com/jest-diff/-/jest-diff-29.7.0.tgz#017934a66ebb7ecf6f205e84699be10afd70458a"
@@ -5618,6 +5672,16 @@ jest-matcher-utils@^29.7.0:
     jest-diff "^29.7.0"
     jest-get-type "^29.6.3"
     pretty-format "^29.7.0"
+
+jest-matcher-utils@^30.0.5:
+  version "30.1.2"
+  resolved "https://registry.yarnpkg.com/jest-matcher-utils/-/jest-matcher-utils-30.1.2.tgz#3f1b63949f740025aff740c6c6a1b653ae370fbb"
+  integrity sha512-7ai16hy4rSbDjvPTuUhuV8nyPBd6EX34HkBsBcBX2lENCuAQ0qKCPb/+lt8OSWUa9WWmGYLy41PrEzkwRwoGZQ==
+  dependencies:
+    "@jest/get-type" "30.1.0"
+    chalk "^4.1.2"
+    jest-diff "30.1.2"
+    pretty-format "30.0.5"
 
 jest-message-util@^29.7.0:
   version "29.7.0"
@@ -6296,6 +6360,13 @@ meow@^13.0.0:
   resolved "https://registry.yarnpkg.com/meow/-/meow-13.2.0.tgz#6b7d63f913f984063b3cc261b6e8800c4cd3474f"
   integrity sha512-pxQJQzB6djGPXh08dacEloMFopsOqGVRKFPYvPOt9XDZ1HasbgDZA74CJGreSU4G3Ak7EFJGoiH2auq+yXISgA==
 
+merge-options@^3.0.4:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/merge-options/-/merge-options-3.0.4.tgz#84709c2aa2a4b24c1981f66c179fe5565cc6dbb7"
+  integrity sha512-2Sug1+knBjkaMsMgf1ctR1Ujx+Ayku4EdJN4Z+C2+JzoeF7A3OZ9KM2GY0CpQS51NR61LTurMJrRKPhSs3ZRTQ==
+  dependencies:
+    is-plain-obj "^2.1.0"
+
 merge-stream@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/merge-stream/-/merge-stream-2.0.0.tgz#52823629a14dd00c9770fb6ad47dc6310f2c1f60"
@@ -6549,6 +6620,11 @@ mimic-fn@^4.0.0:
   resolved "https://registry.yarnpkg.com/mimic-fn/-/mimic-fn-4.0.0.tgz#60a90550d5cb0b239cca65d893b1a53b29871ecc"
   integrity sha512-vqiC06CuhBTUdZH+RYl8sFrL096vA45Ok5ISO6sE/Mr1jRbGH4Csnhi8f3wKVl7x8mO4Au7Ir9D3Oyv1VYMFJw==
 
+min-indent@^1.0.0:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/min-indent/-/min-indent-1.0.1.tgz#a63f681673b30571fbe8bc25686ae746eefa9869"
+  integrity sha512-I9jwMn07Sy/IwOj3zVkVik2JTvgpaykDZEigL6Rx6N9LbMywwUSMtxET+7lVoDLLd3O3IXwJwvuuns8UB/HeAg==
+
 minimatch@^3.0.4, minimatch@^3.1.1, minimatch@^3.1.2:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-3.1.2.tgz#19cd194bfd3e428f049a70817c038d89ab4be35b"
@@ -6638,6 +6714,11 @@ minizlib@^3.0.1:
   integrity sha512-oG62iEk+CYt5Xj2YqI5Xi9xWUeZhDI8jjQmC5oThVH5JGCTgIjr7ciJDzC7MBzYd//WvR1OTmP5Q38Q8ShQtVA==
   dependencies:
     minipass "^7.1.2"
+
+mitt@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/mitt/-/mitt-3.0.1.tgz#ea36cf0cc30403601ae074c8f77b7092cdab36d1"
+  integrity sha512-vKivATfr97l2/QBCYAkXYDbrIWPM2IIKEl7YPhjCvKlG3kE2gm+uBo6nEXK3M5/Ffh/FLpKExzOQ3JJoJGFKBw==
 
 mkdirp@^1.0.3, mkdirp@^1.0.4:
   version "1.0.4"
@@ -7441,6 +7522,15 @@ prettier@2.8.8:
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.8.8.tgz#e8c5d7e98a4305ffe3de2e1fc4aca1a71c28b1da"
   integrity sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==
 
+pretty-format@30.0.5, pretty-format@^30.0.5:
+  version "30.0.5"
+  resolved "https://registry.yarnpkg.com/pretty-format/-/pretty-format-30.0.5.tgz#e001649d472800396c1209684483e18a4d250360"
+  integrity sha512-D1tKtYvByrBkFLe2wHJl2bwMJIiT8rW+XA+TiataH79/FszLQMrpGEvzUVkzPau7OCO0Qnrhpe87PqtOAIB8Yw==
+  dependencies:
+    "@jest/schemas" "30.0.5"
+    ansi-styles "^5.2.0"
+    react-is "^18.3.1"
+
 pretty-format@^29.0.0, pretty-format@^29.7.0:
   version "29.7.0"
   resolved "https://registry.yarnpkg.com/pretty-format/-/pretty-format-29.7.0.tgz#ca42c758310f365bfa71a0bda0a807160b776812"
@@ -7598,7 +7688,7 @@ react-is@^16.13.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
-react-is@^18.0.0:
+react-is@^18.0.0, react-is@^18.3.1:
   version "18.3.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-18.3.1.tgz#e83557dc12eae63a99e003a46388b1dcbb44db7e"
   integrity sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==
@@ -7615,7 +7705,7 @@ react-native-emoji@^1.8.0:
   dependencies:
     node-emoji "1.10.0"
 
-react-native-safe-area-context@^5.5.2:
+react-native-safe-area-context@^5.6.1:
   version "5.6.1"
   resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-5.6.1.tgz#cb4d249ef1a6f7e8fd0cfdfa9764838dffda26b6"
   integrity sha512-/wJE58HLEAkATzhhX1xSr+fostLsK8Q97EfpfMDKo8jlOc1QKESSX/FQrhk7HhQH/2uSaox4Y86sNaI02kteiA==
@@ -7678,6 +7768,26 @@ react@19.1.0:
   resolved "https://registry.yarnpkg.com/react/-/react-19.1.0.tgz#926864b6c48da7627f004795d6cce50e90793b75"
   integrity sha512-FS+XFBNvn3GTAWq26joslQgWNoFu08F4kl0J4CgdNKADkdSGXQyTCnKteIAJy96Br6YbpEU1LSzV5dYtjMkMDg==
 
+reactotron-core-client@2.9.7:
+  version "2.9.7"
+  resolved "https://registry.yarnpkg.com/reactotron-core-client/-/reactotron-core-client-2.9.7.tgz#c1fd2842b095dbd2c7522cfc6bd59e34768038eb"
+  integrity sha512-QWd0ekjU71CQL70J87NT5f7cmIJAMVZND+YgOaaUgmgFjhiXzHrpeIWs19+IFQPVLsJr97gdi58X8Y62Hchs9w==
+  dependencies:
+    reactotron-core-contract "0.2.5"
+
+reactotron-core-contract@0.2.5:
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/reactotron-core-contract/-/reactotron-core-contract-0.2.5.tgz#927160c026895798bfe931bd2462fdd5d4e435f9"
+  integrity sha512-pxuXFG1jffAWQSdT0FBws+/Xvl8++6T6WrAi4g7AxIZU5FPeut2wq//0yDhDWx6lF82eAo5JTZK7zECQy45QxA==
+
+reactotron-react-native@^5.1.15:
+  version "5.1.15"
+  resolved "https://registry.yarnpkg.com/reactotron-react-native/-/reactotron-react-native-5.1.15.tgz#ccf1e8e9cdb9becd81c332b657962cd1f1e42414"
+  integrity sha512-6uUqRirt5rflxr71w4tOsP8o02cGk7D1dne0E32+8c8/EX6YrIs5x5v+ghRvIGwRJ7cDwdvVWayWD2Qa1msY8w==
+  dependencies:
+    mitt "^3.0.1"
+    reactotron-core-client "2.9.7"
+
 read-cmd-shim@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/read-cmd-shim/-/read-cmd-shim-5.0.0.tgz#6e5450492187a0749f6c80dcbef0debc1117acca"
@@ -7739,6 +7849,14 @@ readable-stream@^3.4.0:
     inherits "^2.0.3"
     string_decoder "^1.1.1"
     util-deprecate "^1.0.1"
+
+redent@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/redent/-/redent-3.0.0.tgz#e557b7998316bb53c9f1f56fa626352c6963059f"
+  integrity sha512-6tDA8g98We0zd0GvVeMT9arEOnTw9qM03L9cJXaCjrip1OO764RDBLBfrB4cwzNGDj5OA5ioymC9GkizgWJDUg==
+  dependencies:
+    indent-string "^4.0.0"
+    strip-indent "^3.0.0"
 
 reflect.getprototypeof@^1.0.6, reflect.getprototypeof@^1.0.9:
   version "1.0.10"
@@ -8516,6 +8634,13 @@ strip-final-newline@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/strip-final-newline/-/strip-final-newline-4.0.0.tgz#35a369ec2ac43df356e3edd5dcebb6429aa1fa5c"
   integrity sha512-aulFJcD6YK8V1G7iRB5tigAP4TsHBZZrOV8pjV++zdUwmeV8uzbY7yn6h9MswN62adStNZFuCIx4haBnRuMDaw==
+
+strip-indent@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/strip-indent/-/strip-indent-3.0.0.tgz#c32e1cee940b6b3432c771bc2c54bcce73cd3001"
+  integrity sha512-laJTa3Jb+VQpaC6DseHhF7dXVqHTfJPCRDaEbid/drOhgitgYku/letMUqOXFoWV0zIIUbjpdH2t+tYj4bQMRQ==
+  dependencies:
+    min-indent "^1.0.0"
 
 strip-json-comments@^3.1.1:
   version "3.1.1"
