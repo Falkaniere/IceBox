@@ -1,7 +1,7 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { View, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 import Header from '../../components/header';
 import Search from '../../components/search';
 import FridgeList from '../../components/fridgeList';
