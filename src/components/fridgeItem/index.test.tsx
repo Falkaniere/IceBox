@@ -13,7 +13,7 @@ const setup = () => {
   return render(<FridgeItem item={Item} />);
 };
 
-it('should render fridge list component correctly', () => {
+it('should render fridge item component correctly', () => {
   const { toJSON } = setup();
 
   expect(toJSON()).toMatchSnapshot();
