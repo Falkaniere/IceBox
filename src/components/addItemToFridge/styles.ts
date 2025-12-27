@@ -1,17 +1,27 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-  icon: { marginRight: 16 },
-  fab: {
+  fabContainer: {
     position: 'absolute',
-    bottom: 24,
-    right: 24,
+    bottom: 20,
+    right: 20,
+  },
+  fabButton: {
     backgroundColor: '#2BBBAD',
-    borderRadius: 28,
-    width: 56,
-    height: 56,
+    width: 60,
+    height: 60,
+    borderRadius: 30,
     alignItems: 'center',
     justifyContent: 'center',
-    elevation: 4,
+    elevation: 5,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+  },
+  fabText: {
+    color: 'white',
+    fontSize: 24,
+    fontWeight: 'bold',
   },
 });
