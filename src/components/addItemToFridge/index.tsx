@@ -9,7 +9,7 @@ function AddItemToFridge() {
         style={styles.fabButton}
         onPress={() => console.log('Button pressed!')}
       >
-        <FontAwesome6 name='plus' iconStyle='solid' size={24} color='#fff' />
+        <FontAwesome6 name='plus' iconStyle='solid' size={32} color='#000000' />
       </TouchableOpacity>
     </View>
   );

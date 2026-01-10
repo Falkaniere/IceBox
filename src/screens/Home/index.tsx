@@ -35,7 +35,6 @@ function Home() {
         <Header />
         <Search />
         <FridgeList data={data} />
-        <AddItemToFridge />
       </View>
     </SafeAreaView>
   );
