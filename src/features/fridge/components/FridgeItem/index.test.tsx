@@ -1,4 +1,4 @@
-import FridgeItem from '.';
+import FridgeItem from './index';
 import { render } from '@testing-library/react-native';
 
 const Item = {

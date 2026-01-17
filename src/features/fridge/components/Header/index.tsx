@@ -1,7 +1,7 @@
 import { Text, View } from 'react-native';
 
 import { styles } from './styles';
-import AddItemToFridge from '../addItemToFridge';
+import AddItemToFridge from '@/features/fridge/components/AddItem/index';
 
 function Header() {
   return (

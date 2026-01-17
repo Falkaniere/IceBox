@@ -1,7 +1,7 @@
 import React from 'react';
-import Home  from './screens/Home';
+import Home from '@/screens/Home';
 
-function Index(){
+function Index() {
   return (
     <>
       <Home />
@@ -10,4 +10,3 @@ function Index(){
 }
 
 export default Index;
-
