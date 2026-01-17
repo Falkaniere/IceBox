@@ -2,10 +2,9 @@ import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { View } from 'react-native';
-import Header from '../../components/header';
-import Search from '../../components/search';
-import FridgeList from '../../components/fridgeList';
-import AddItemToFridge from '../../components/addItemToFridge';
+import Header from '@/features/fridge/components/Header/index';
+import Search from '@/features/fridge/components/Search/index';
+import FridgeList from '@/features/fridge/components/fridgeList';
 import { styles } from './styles';
 
 function Home() {

@@ -1,6 +1,6 @@
 import { FlatList } from 'react-native';
 
-import FridgeItem from '../fridgeItem';
+import FridgeItem from '@/features/fridge/components/FridgeItem/index';
 
 function FridgeList({ data }: { data: any[] }) {
   return (
