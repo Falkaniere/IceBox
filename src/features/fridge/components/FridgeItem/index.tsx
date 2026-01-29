@@ -1,32 +1,26 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 
+import { formatExpiryLabel, ExpiryStatus } from '@/app/utils/expiry';
 import { styles } from './styles';
 
 type FridgeItemModel = {
   id: string;
   name: string;
-  expires: string;
+  expiresAt: string;
   qty: number;
   icon?: string;
-  expired?: boolean;
-  soon?: boolean; // optional for MVP
+  status: ExpiryStatus;
 };
 
-function getStatus(item: FridgeItemModel): 'expired' | 'soon' | 'fresh' {
-  if (item.expired) return 'expired';
-  if (item.soon) return 'soon';
-  return 'fresh';
-}
-
-function getStatusLabel(status: 'expired' | 'soon' | 'fresh') {
+function getStatusLabel(status: ExpiryStatus) {
   if (status === 'expired') return 'Expired';
   if (status === 'soon') return 'Expiring soon';
   return 'Fresh';
 }
 
 export default function FridgeItem({ item }: { item: FridgeItemModel }) {
-  const status = getStatus(item);
+  const status = item.status;
 
   return (
     <View style={styles.card}>
@@ -65,9 +59,7 @@ export default function FridgeItem({ item }: { item: FridgeItemModel }) {
           ]}
           numberOfLines={1}
         >
-          {status === 'expired'
-            ? `Expired: ${item.expires}`
-            : `Expires: ${item.expires}`}
+          {formatExpiryLabel(status, item.expiresAt)}
         </Text>
       </View>
 

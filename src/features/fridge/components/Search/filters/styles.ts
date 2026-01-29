@@ -1,13 +1,39 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-  filters: { flexDirection: 'row', marginBottom: 12 },
-  filterBtn: {
-    backgroundColor: '#E6F4F1',
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 12,
-    marginRight: 8,
+  container: {
+    flexDirection: 'row',
+    gap: 10,
   },
-  filterText: { color: '#333', fontWeight: '500' },
+
+  pill: {
+    height: 36,
+    paddingHorizontal: 12,
+    borderRadius: 999,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#121A24',
+    borderWidth: 1,
+    borderColor: '#1E2A3A',
+  },
+
+  pillSelected: {
+    backgroundColor: '#1D4ED8',
+    borderColor: '#1D4ED8',
+  },
+
+  pillPressed: {
+    opacity: 0.9,
+    transform: [{ scale: 0.99 }],
+  },
+
+  text: {
+    color: '#A9B6C9',
+    fontSize: 13,
+    fontWeight: '700',
+  },
+
+  textSelected: {
+    color: '#FFFFFF',
+  },
 });
