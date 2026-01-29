@@ -40,7 +40,7 @@ export default function LoginScreen() {
       <View style={styles.actions}>
         <Pressable
           accessibilityRole='button'
-          onPress={signInWithGoogle}
+          onPress={handleGoogleSignIn}
           disabled={signingIn}
           style={({ pressed }) => [
             styles.googleButton,

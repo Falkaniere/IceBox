@@ -7,8 +7,8 @@ import Home from '@/screens/Home';
 import { useAuth } from '@/app/providers/AuthProvider';
 
 type RootStackParamList = {
-  Login: React.ComponentType<any>;
-  Home: React.ComponentType<any>;
+  Login: undefined;
+  Home: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();

@@ -33,8 +33,11 @@ export default function Header() {
             <Text style={styles.signOutText}>Sign out</Text>
           )}
         </Pressable>
-
-        <AddItemToFridge onPress={() => console.log('Add item')} />
+        <AddItemToFridge
+          onPress={() => {
+            /* TODO: Implement add item action */
+          }}
+        />
       </View>
     </View>
   );
