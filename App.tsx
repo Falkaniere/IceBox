@@ -4,7 +4,7 @@ if (__DEV__) {
 
 import { StatusBar, useColorScheme } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import Index from './src';
+import AppIndex from '@/app/index';
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
@@ -12,7 +12,7 @@ function App() {
   return (
     <SafeAreaProvider>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <Index />
+      <AppIndex />
     </SafeAreaProvider>
   );
 }

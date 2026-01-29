@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "1056602283808",
+    "project_id": "icebox-37cd2",
+    "storage_bucket": "icebox-37cd2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1056602283808:android:de136e398bed23ee184145",
+        "android_client_info": {
+          "package_name": "com.icebox"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1056602283808-f4ni995b7bsrma1akor39m4fpq1esc52.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3XcSuFuuwN-y-a1rYp6cFyMX-bak-SpE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1056602283808-bj19m7d633ktln8m5avns31e9jcgu12i.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1056602283808-13m5lflcrnl4astjeeb5mo1nlu5h506u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.jfsdever.icebox"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1056602283808:android:c9ad67a1bba096b2184145",
+        "android_client_info": {
+          "package_name": "com.jfsdever.icebox"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1056602283808-f4ni995b7bsrma1akor39m4fpq1esc52.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3XcSuFuuwN-y-a1rYp6cFyMX-bak-SpE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1056602283808-bj19m7d633ktln8m5avns31e9jcgu12i.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1056602283808-13m5lflcrnl4astjeeb5mo1nlu5h506u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.jfsdever.icebox"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

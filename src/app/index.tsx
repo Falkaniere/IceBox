@@ -1,12 +1,13 @@
 import React from 'react';
-import Home from '@/screens/Home';
+import RootNavigator from '@/app/navigation/RootNavigator';
+import { AuthProvider } from '@/app/providers/AuthProvider';
 
-function Index() {
+function AppIndex() {
   return (
-    <>
-      <Home />
-    </>
+    <AuthProvider>
+      <RootNavigator />
+    </AuthProvider>
   );
 }
 
-export default Index;
+export default AppIndex;

@@ -1,15 +1,44 @@
-import { Text, View } from 'react-native';
+import React from 'react';
+import { Text, View, Pressable, ActivityIndicator } from 'react-native';
+
+import AddItemToFridge from '@/features/fridge/components/AddItem';
+import { useAuth } from '@/app/providers/AuthProvider';
 
 import { styles } from './styles';
-import AddItemToFridge from '@/features/fridge/components/AddItem/index';
 
-function Header() {
+export default function Header() {
+  const { signOut, signingOut } = useAuth();
+
   return (
     <View style={styles.header}>
       <Text style={styles.title}>My Fridge</Text>
-      <AddItemToFridge />
+
+      <View style={styles.actions}>
+        <Pressable
+          accessibilityRole='button'
+          onPress={signOut}
+          disabled={signingOut}
+          style={({ pressed }) => [
+            styles.signOutButton,
+            signingOut && styles.buttonDisabled,
+            pressed && !signingOut && styles.buttonPressed,
+          ]}
+        >
+          {signingOut ? (
+            <View style={styles.signOutContent}>
+              <ActivityIndicator />
+              <Text style={styles.signOutText}>Signing out...</Text>
+            </View>
+          ) : (
+            <Text style={styles.signOutText}>Sign out</Text>
+          )}
+        </Pressable>
+        <AddItemToFridge
+          onPress={() => {
+            /* TODO: Implement add item action */
+          }}
+        />
+      </View>
     </View>
   );
 }
-
-export default Header;
