@@ -1,16 +1,26 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import { Pressable, TextInput, View } from 'react-native';
 import { FontAwesome6 } from '@react-native-vector-icons/fontawesome6';
 
-import Filters from './filters';
+import Filters, { FridgeFilter } from './filters';
 import { styles } from './styles';
 
-export default function Search() {
-  const [query, setQuery] = useState('');
+type SearchProps = {
+  query: string;
+  onChangeQuery: (value: string) => void;
+  filter: FridgeFilter;
+  onChangeFilter: (value: FridgeFilter) => void;
+};
 
+export default function Search({
+  query,
+  onChangeQuery,
+  filter,
+  onChangeFilter,
+}: SearchProps) {
   const showClear = useMemo(() => query.trim().length > 0, [query]);
 
-  const handleClear = () => setQuery('');
+  const handleClear = () => onChangeQuery('');
 
   return (
     <View style={styles.container}>
@@ -26,7 +36,7 @@ export default function Search() {
 
         <TextInput
           value={query}
-          onChangeText={setQuery}
+          onChangeText={onChangeQuery}
           style={styles.input}
           placeholder='Search items...'
           placeholderTextColor='#6F7E94'
@@ -48,7 +58,7 @@ export default function Search() {
             hitSlop={10}
           >
             <FontAwesome6
-              name='xmark'
+              name='x'
               iconStyle='solid'
               size={14}
               color='#E9F0FF'
@@ -57,7 +67,7 @@ export default function Search() {
         ) : null}
       </View>
 
-      <Filters />
+      <Filters value={filter} onChange={onChangeFilter} />
     </View>
   );
 }
