@@ -8,36 +8,11 @@ end
 
 # Use it to require both react-native's and this package's scripts:
 node_require('react-native/scripts/react_native_pods.rb')
-node_require('react-native-permissions/scripts/setup.rb')
 
 platform :ios, min_ios_version_supported
+use_modular_headers!
 prepare_react_native_project!
 
-# ⬇️ uncomment the permissions you need
-setup_permissions([
-  # 'AppTrackingTransparency',
-  # 'Bluetooth',
-  # 'Calendars',
-  # 'CalendarsWriteOnly',
-  'Camera',
-  # 'Contacts',
-  # 'FaceID',
-  # 'LocationAccuracy',
-  # 'LocationAlways',
-  # 'LocationWhenInUse',
-  # 'MediaLibrary',
-  # 'Microphone',
-  # 'Motion',
-  # 'Notifications',
-  # 'PhotoLibrary',
-  # 'PhotoLibraryAddOnly',
-  # 'Reminders',
-  # 'Siri',
-  # 'SpeechRecognition',
-  # 'StoreKit',
-])
-
-# …
 
 linkage = ENV['USE_FRAMEWORKS']
 if linkage != nil
@@ -47,6 +22,9 @@ end
 
 target 'IceBox' do
   config = use_native_modules!
+
+  use_frameworks! :linkage => :static
+  $RNFirebaseAsStaticFramework = true
 
   use_react_native!(
     :path => config[:reactNativePath],

@@ -1,18 +1,31 @@
 import React from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
-import { styles } from './styles';
+import { Pressable, View } from 'react-native';
 import { FontAwesome6 } from '@react-native-vector-icons/fontawesome6';
-function AddItemToFridge() {
+import { styles } from './styles';
+
+type AddItemToFridgeProps = {
+  onPress?: () => void;
+};
+
+export default function AddItemToFridge({ onPress }: AddItemToFridgeProps) {
+  const handlePress = () => {
+    onPress?.();
+  };
+
   return (
-    <View style={styles.fabContainer}>
-      <TouchableOpacity
-        style={styles.fabButton}
-        onPress={() => console.log('Button pressed!')}
+    <View style={styles.container}>
+      <Pressable
+        accessibilityRole='button'
+        accessibilityLabel='Add item'
+        onPress={handlePress}
+        style={({ pressed }) => [
+          styles.button,
+          pressed && styles.buttonPressed,
+        ]}
+        hitSlop={10}
       >
-        <FontAwesome6 name='plus' iconStyle='solid' size={32} color='#000000' />
-      </TouchableOpacity>
+        <FontAwesome6 name='plus' iconStyle='solid' size={18} color='#FFFFFF' />
+      </Pressable>
     </View>
   );
 }
-
-export default AddItemToFridge;

@@ -1,13 +1,14 @@
 import React from 'react';
+import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { View } from 'react-native';
-import Header from '@/features/fridge/components/Header/index';
-import Search from '@/features/fridge/components/Search/index';
-import FridgeList from '@/features/fridge/components/fridgeList';
+import Header from '@/features/fridge/components/Header';
+import Search from '@/features/fridge/components/Search';
+import FridgeList from '@/features/fridge/components/FridgeList';
+
 import { styles } from './styles';
 
-function Home() {
+export default function Home() {
   const data = [
     { id: '1', name: 'red_apple', expires: 'Sep 5, 2024', qty: 4, icon: '🍎' },
     {
@@ -29,7 +30,7 @@ function Home() {
   ];
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={styles.safeArea} edges={['top']}>
       <View style={styles.container}>
         <Header />
         <Search />
@@ -38,5 +39,3 @@ function Home() {
     </SafeAreaView>
   );
 }
-
-export default Home;
