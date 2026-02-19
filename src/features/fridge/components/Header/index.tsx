@@ -1,13 +1,19 @@
 import React from 'react';
 import { Text, View, Pressable, ActivityIndicator } from 'react-native';
 
-import AddItemToFridge from '@/features/fridge/components/AddItem';
 import { useAuth } from '@/app/providers/AuthProvider';
 
 import { styles } from './styles';
+import { useFridgeItems } from '@/features/fridge/hooks/useFridgeItem';
+import AddItemButton from '@/features/fridge/components/Header/components/addItemButton';
 
-export default function Header() {
+type HeaderProps = {
+  onAddPress: () => void;
+};
+
+export default function Header({ onAddPress }: HeaderProps) {
   const { signOut, signingOut } = useAuth();
+  const { addItem } = useFridgeItems();
 
   return (
     <View style={styles.header}>
@@ -33,11 +39,10 @@ export default function Header() {
             <Text style={styles.signOutText}>Sign out</Text>
           )}
         </Pressable>
-        <AddItemToFridge
-          onPress={() => {
-            /* TODO: Implement add item action */
-          }}
-        />
+
+        <View style={styles.actions}>
+          <AddItemButton onPress={onAddPress} />
+        </View>
       </View>
     </View>
   );

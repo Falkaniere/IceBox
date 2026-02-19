@@ -3,15 +3,8 @@ import { Text, View } from 'react-native';
 
 import { formatExpiryLabel, ExpiryStatus } from '@/app/utils/expiry';
 import { styles } from './styles';
-
-type FridgeItemModel = {
-  id: string;
-  name: string;
-  expiresAt: string;
-  qty: number;
-  icon?: string;
-  status: ExpiryStatus;
-};
+import { categoryIconMap } from '@/features/fridge/utils/categoryIcon';
+import { FridgeItem as FridgeItemType } from '@/features/fridge/model/fridgeItem';
 
 function getStatusLabel(status: ExpiryStatus) {
   if (status === 'expired') return 'Expired';
@@ -19,12 +12,12 @@ function getStatusLabel(status: ExpiryStatus) {
   return 'Fresh';
 }
 
-export default function FridgeItem({ item }: { item: FridgeItemModel }) {
+export default function FridgeItem({ item }: { item: FridgeItemType }) {
   const status = item.status;
 
   return (
     <View style={styles.card}>
-      <Text style={styles.itemIcon}>{item.icon ?? '🧊'}</Text>
+      <Text style={styles.itemIcon}>{categoryIconMap[item.category]}</Text>
 
       <View style={styles.content}>
         <View style={styles.topRow}>
