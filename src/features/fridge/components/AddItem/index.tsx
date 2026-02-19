@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Pressable } from 'react-native';
+import { View, Text, TextInput, Pressable, Platform } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import DateTimePicker from '@react-native-community/datetimepicker';
+
 import { X } from 'lucide-react-native';
 import { nanoid } from 'nanoid/non-secure';
 
 import { useFridge } from '@/features/fridge/providers/FridgeProvider';
 import { detectCategory } from '@/features/products/utils/detectCategory';
 import { styles } from './styles';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 type Props = {
   onClose: () => void;
@@ -15,18 +17,27 @@ type Props = {
 export default function AddItemToFridge({ onClose }: Props) {
   const { addItem } = useFridge();
 
+  const [date, setDate] = useState<Date | null>(null);
+  const [showPicker, setShowPicker] = useState(false);
   const [name, setName] = useState('');
   const [qty, setQty] = useState('1');
-  const [expiresAt, setExpiresAt] = useState('');
+
+  function onChangeDate(event: any, selectedDate?: Date) {
+    setShowPicker(false);
+
+    if (selectedDate) {
+      setDate(selectedDate);
+    }
+  }
 
   function handleSave() {
-    if (!name || !expiresAt) return;
+    if (!name || !date) return;
 
     addItem({
       id: nanoid(),
       name,
       qty: Number(qty),
-      expiresAt: new Date(expiresAt).toISOString(),
+      expiresAt: date.toISOString(),
       category: detectCategory(name),
       createdAt: new Date().toISOString(),
     });
@@ -68,13 +79,26 @@ export default function AddItemToFridge({ onClose }: Props) {
 
           {/* Expiration */}
           <Text style={styles.label}>Expiration Date</Text>
-          <TextInput
-            style={styles.input}
-            placeholder='YYYY-MM-DD'
-            placeholderTextColor='#6F7E94'
-            value={expiresAt}
-            onChangeText={setExpiresAt}
-          />
+
+          <Pressable style={styles.input} onPress={() => setShowPicker(true)}>
+            <Text
+              style={{
+                color: date ? '#E9F0FF' : '#6F7E94',
+              }}
+            >
+              {date ? date.toISOString().split('T')[0] : 'Select date'}
+            </Text>
+          </Pressable>
+
+          {showPicker && (
+            <DateTimePicker
+              value={date || new Date()}
+              mode='date'
+              display={Platform.OS === 'ios' ? 'spinner' : 'default'}
+              onChange={onChangeDate}
+              minimumDate={new Date()}
+            />
+          )}
         </View>
 
         {/* Actions */}
