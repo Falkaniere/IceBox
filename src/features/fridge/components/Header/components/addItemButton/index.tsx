@@ -1,22 +1,26 @@
 import React, { useState } from 'react';
-import { Pressable, Text, TextInput, View } from 'react-native';
-import { FontAwesome6 } from '@react-native-vector-icons/fontawesome6';
+import { Pressable, View } from 'react-native';
 import { styles } from './styles';
+import { Plus } from 'lucide-react-native';
 
-export default function AddItemButton() {
+type Props = {
+  onPress: () => void;
+};
+
+export default function AddItemButton({ onPress }: Props) {
   return (
     <View style={styles.container}>
       <Pressable
         accessibilityRole='button'
         accessibilityLabel='Add item'
-        onPress={() => {}}
+        onPress={onPress}
         style={({ pressed }) => [
           styles.button,
           pressed && styles.buttonPressed,
         ]}
         hitSlop={10}
       >
-        <FontAwesome6 name='plus' iconStyle='solid' size={18} color='#FFFFFF' />
+        <Plus size={18} color='#FFFFFF' />
       </Pressable>
     </View>
   );

@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
-import { Pressable, Text, TextInput, View } from 'react-native';
-import { FontAwesome6 } from '@react-native-vector-icons/fontawesome6';
-import { styles } from './styles';
-import { FridgeItem } from '@/features/fridge/model/fridgeItem';
-import { detectCategory } from '@/features/products/utils/detectCategory';
-import { v4 as uuidv4 } from 'uuid';
+import { View, Text, TextInput, Pressable } from 'react-native';
+import { X } from 'lucide-react-native';
+import { nanoid } from 'nanoid/non-secure';
 
-type AddItemToFridgeProps = {
-  onSave: (item: FridgeItem) => void;
+import { useFridge } from '@/features/fridge/providers/FridgeProvider';
+import { detectCategory } from '@/features/products/utils/detectCategory';
+import { styles } from './styles';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
+type Props = {
+  onClose: () => void;
 };
 
-export default function AddItemToFridge({ onSave }: AddItemToFridgeProps) {
+export default function AddItemToFridge({ onClose }: Props) {
+  const { addItem } = useFridge();
+
   const [name, setName] = useState('');
   const [qty, setQty] = useState('1');
   const [expiresAt, setExpiresAt] = useState('');
@@ -18,34 +22,78 @@ export default function AddItemToFridge({ onSave }: AddItemToFridgeProps) {
   function handleSave() {
     if (!name || !expiresAt) return;
 
-    const category = detectCategory(name);
-
-    const newItem: FridgeItem = {
-      id: uuidv4(),
+    addItem({
+      id: nanoid(),
       name,
       qty: Number(qty),
       expiresAt: new Date(expiresAt).toISOString(),
-      category,
+      category: detectCategory(name),
       createdAt: new Date().toISOString(),
-    };
+    });
 
-    onSave(newItem);
+    onClose();
   }
 
   return (
-    <View style={styles.container}>
-      <Text>Name</Text>
-      <TextInput value={name} onChangeText={setName} />
+    <View style={styles.overlay}>
+      <SafeAreaView style={styles.container}>
+        {/* Header */}
+        <View style={styles.header}>
+          <Text style={styles.title}>Add Item</Text>
+          <Pressable onPress={onClose} hitSlop={10}>
+            <X size={20} color='#E9F0FF' />
+          </Pressable>
+        </View>
 
-      <Text>Quantity</Text>
-      <TextInput value={qty} onChangeText={setQty} keyboardType='numeric' />
+        {/* Surface Card */}
+        <View style={styles.surface}>
+          {/* Name */}
+          <Text style={styles.label}>Name</Text>
+          <TextInput
+            style={styles.input}
+            placeholder='e.g. Milk'
+            placeholderTextColor='#6F7E94'
+            value={name}
+            onChangeText={setName}
+          />
 
-      <Text>Expiration Date (YYYY-MM-DD)</Text>
-      <TextInput value={expiresAt} onChangeText={setExpiresAt} />
+          {/* Quantity */}
+          <Text style={styles.label}>Quantity</Text>
+          <TextInput
+            style={styles.input}
+            keyboardType='numeric'
+            value={qty}
+            onChangeText={setQty}
+          />
 
-      <Pressable onPress={handleSave}>
-        <Text>Save</Text>
-      </Pressable>
+          {/* Expiration */}
+          <Text style={styles.label}>Expiration Date</Text>
+          <TextInput
+            style={styles.input}
+            placeholder='YYYY-MM-DD'
+            placeholderTextColor='#6F7E94'
+            value={expiresAt}
+            onChangeText={setExpiresAt}
+          />
+        </View>
+
+        {/* Actions */}
+        <View style={styles.actions}>
+          <Pressable
+            style={({ pressed }) => [
+              styles.primaryButton,
+              pressed && styles.buttonPressed,
+            ]}
+            onPress={handleSave}
+          >
+            <Text style={styles.primaryButtonText}>Save</Text>
+          </Pressable>
+
+          <Pressable onPress={onClose}>
+            <Text style={styles.cancelText}>Cancel</Text>
+          </Pressable>
+        </View>
+      </SafeAreaView>
     </View>
   );
 }

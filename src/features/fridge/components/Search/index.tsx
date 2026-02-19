@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react';
 import { Pressable, TextInput, View } from 'react-native';
-import { FontAwesome6 } from '@react-native-vector-icons/fontawesome6';
 
 import Filters, { FridgeFilter } from './filters';
 import { styles } from './styles';
+import { Search as SearchIcon, X } from 'lucide-react-native';
 
 type SearchProps = {
   query: string;
@@ -26,12 +26,7 @@ export default function Search({
     <View style={styles.container}>
       <View style={styles.searchRow}>
         <View style={styles.iconContainer}>
-          <FontAwesome6
-            name='magnifying-glass'
-            iconStyle='solid'
-            size={16}
-            color='#A9B6C9'
-          />
+          <SearchIcon size={16} color='#A9B6C9' />
         </View>
 
         <TextInput
@@ -57,12 +52,7 @@ export default function Search({
             ]}
             hitSlop={10}
           >
-            <FontAwesome6
-              name='x'
-              iconStyle='solid'
-              size={14}
-              color='#E9F0FF'
-            />
+            <X size={20} color='#E9F0FF' />
           </Pressable>
         ) : null}
       </View>
