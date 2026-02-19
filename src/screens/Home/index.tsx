@@ -9,35 +9,44 @@ import type { FridgeFilter } from '@/features/fridge/components/Search/filters';
 
 import { getExpiryStatus } from '@/app/utils/expiry';
 import { styles } from './styles';
-
-type FridgeItem = {
-  id: string;
-  name: string;
-  expiresAt: string; // ISO string
-  qty: number;
-  icon?: string;
-};
+import { FridgeItem } from '@/features/fridge/model/fridgeItem';
 
 export default function HomeScreen() {
   const [query, setQuery] = useState('');
   const [filter, setFilter] = useState<FridgeFilter>('all');
 
   const data: FridgeItem[] = [
-    { id: '1', name: 'red_apple', expiresAt: '2026-01-31', qty: 4, icon: '🍎' },
+    {
+      id: '1',
+      name: 'red_apple',
+      expiresAt: '2026-01-31',
+      qty: 4,
+      category: 'fruit',
+      createdAt: '2026-01-01',
+    },
     {
       id: '2',
       name: 'glass_of_milk',
       expiresAt: '2026-03-10',
       qty: 2,
-      icon: '🥛',
+      category: 'dairy',
+      createdAt: '2026-01-01',
     },
-    { id: '3', name: 'broccoli', expiresAt: '2026-01-20', qty: 1, icon: '🥦' },
+    {
+      id: '3',
+      name: 'broccoli',
+      expiresAt: '2026-01-20',
+      qty: 1,
+      category: 'vegetable',
+      createdAt: '2026-01-01',
+    },
     {
       id: '4',
       name: 'cheese_wedge',
       expiresAt: '2026-01-10',
       qty: 1,
-      icon: '🧀',
+      category: 'dairy',
+      createdAt: '2026-01-01',
     },
   ];
 
