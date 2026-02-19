@@ -6,6 +6,7 @@ Built with **React Native** and designed for both **iOS and Android**.
 ---
 
 ## ✨ Features
+
 - 📦 Register fridge items with name, quantity, and expiration date
 - 🔎 Search and filter items (All, Expiring Soon, Expired)
 - 🧾 Minimalist card-style item list
@@ -18,7 +19,7 @@ Built with **React Native** and designed for both **iOS and Android**.
 
 **need to be update**
 
-*(Add screenshots or mockups here)*
+_(Add screenshots or mockups here)_
 
 ---
 
@@ -27,11 +28,13 @@ Built with **React Native** and designed for both **iOS and Android**.
 **need to be update**
 
 ### Prerequisites
+
 - [Node.js](https://nodejs.org/) (LTS recommended)
 - [Expo CLI](https://docs.expo.dev/get-started/installation/) or React Native CLI
 - iOS Simulator (Xcode) or Android Emulator (Android Studio) / physical device
 
 ### Installation
+
 ```bash
 
 # Clone repository
@@ -59,12 +62,61 @@ npx expo run:ios
 npx expo run:android
 
 ```
-## Project struct
-**need to be update**
 
-my-fridge-app/
-│── assets/        # Images, icons, fonts
-│── components/    # Reusable UI components
-│── screens/       # App screens (FridgeScreen, AddItemScreen, etc.)
-│── App.js         # App entry point
-│── package.json   # Dependencies & scripts
+## Project struct
+
+IceBox/
+│
+├── src/
+│ ├── app/
+│ │ ├── config/ # App configurations (Firebase, env, etc.)
+│ │ │ └── firebase.ts
+│ │ │
+│ │ ├── navigation/ # Navigation configuration
+│ │ │ └── RootNavigator.tsx
+│ │ │
+│ │ ├── providers/ # Global providers (Auth, Theme, etc.)
+│ │ │ └── AuthProvider.tsx
+│ │ │
+│ │ ├── utils/ # Shared utilities
+│ │ │ └── expiry.ts
+│ │ │
+│ │ └── index.tsx # App entry point
+│ │
+│ ├── features/ # Feature-based architecture
+│ │
+│ │ ├── auth/
+│ │ │ ├── api/ # Auth API logic
+│ │ │ └── model/ # Auth types & business logic
+│ │ │
+│ │ ├── fridge/
+│ │ │ ├── components/
+│ │ │ │ ├── AddItem/
+│ │ │ │ ├── FridgeItem/
+│ │ │ │ ├── FridgeList/
+│ │ │ │ ├── Header/
+│ │ │ │ └── Search/
+│ │ │ │
+│ │ │ ├── hooks/ # Custom hooks (useFridgeItems)
+│ │ │ ├── model/ # fridgeItem, filters, etc.
+│ │ │ └── api/ # Fridge-related API logic
+│ │ │
+│ │ ├── products/
+│ │ │ ├── api/
+│ │ │ └── model/
+│ │ │
+│ │ └── scanner/
+│ │ ├── api/
+│ │ ├── model/
+│ │ └── screens/
+│ │
+│ └── screens/ # App-level screens
+│ ├── Home/
+│ │ ├── index.tsx
+│ │ └── styles.ts
+│ │
+│ └── Login/
+│ ├── index.tsx
+│ └── styles.ts
+│
+└── package.json
