@@ -1,50 +1,98 @@
-import React, { createContext, useContext, useMemo, useState } from 'react';
+import React, {
+  createContext,
+  use,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
+
+import { useAuth } from '@/app/providers/AuthProvider';
 import { FridgeItem } from '@/features/fridge/model/fridgeItem';
+import {
+  addFridgeItem,
+  createDefaultFridge,
+  getUserFridgeId,
+  listenToFridgeItems,
+  removeFridgeItem,
+} from '@/features/fridge/api/fridgeService';
 
 type FridgeContextType = {
   items: FridgeItem[];
-  addItem: (item: FridgeItem) => void;
-  removeItem: (id: string) => void;
-  updateItem: (item: FridgeItem) => void;
-  clearItems: () => void;
+  loading: boolean;
+  addItem: (item: FridgeItem) => Promise<void>;
+  removeItem: (itemId: string) => Promise<void>;
 };
 
 const FridgeContext = createContext<FridgeContextType | null>(null);
 
 export function FridgeProvider({ children }: { children: React.ReactNode }) {
+  const { user, initializing } = useAuth();
+
   const [items, setItems] = useState<FridgeItem[]>([]);
+  const [fridgeId, setFridgeId] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  function addItem(item: FridgeItem) {
-    setItems(prev => [...prev, item]);
+  useEffect(() => {
+    if (initializing) return;
+    if (!user?.uid) {
+      setItems([]);
+      setFridgeId(null);
+      setLoading(false);
+      return;
+    }
+
+    let unsubscribe: (() => void) | undefined;
+
+    async function init() {
+      try {
+        if (!user) return null;
+
+        setLoading(true);
+
+        let id = await getUserFridgeId(user.uid);
+
+        if (!id) {
+          id = await createDefaultFridge(user.uid);
+        }
+
+        setFridgeId(id);
+
+        unsubscribe = listenToFridgeItems(id, setItems);
+      } catch (error) {
+        console.error('🔥 FridgeProvider init error:', error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    init();
+
+    return () => {
+      if (unsubscribe) unsubscribe();
+    };
+  }, [user?.uid, initializing]);
+
+  async function addItem(item: FridgeItem) {
+    if (!fridgeId) return;
+    await addFridgeItem(fridgeId, item);
   }
 
-  function removeItem(id: string) {
-    setItems(prev => prev.filter(item => item.id !== id));
+  async function removeItem(itemId: string) {
+    if (!fridgeId) return;
+    await removeFridgeItem(fridgeId, itemId);
   }
-
-  function updateItem(updatedItem: FridgeItem) {
-    setItems(prev =>
-      prev.map(item => (item.id === updatedItem.id ? updatedItem : item)),
-    );
-  }
-
-  function clearItems() {
-    setItems([]);
-  }
-
-  const value = useMemo(
-    () => ({
-      items,
-      addItem,
-      removeItem,
-      updateItem,
-      clearItems,
-    }),
-    [items],
-  );
 
   return (
-    <FridgeContext.Provider value={value}>{children}</FridgeContext.Provider>
+    <FridgeContext.Provider
+      value={{
+        items,
+        loading,
+        addItem,
+        removeItem,
+      }}
+    >
+      {children}
+    </FridgeContext.Provider>
   );
 }
 
