@@ -31,12 +31,12 @@ export default function RootNavigator() {
           </Stack.Group>
         ) : (
           <Stack.Group>
-            <Stack.Screen
+            {/* <Stack.Screen
               name='Home'
               component={Home}
               options={{ headerShown: false }}
-            />
-            {/* <Stack.Screen name='Login' component={Login} /> */}
+            /> */}
+            <Stack.Screen name='Login' component={Login} />
           </Stack.Group>
         )}
       </Stack.Navigator>
