@@ -4,9 +4,10 @@ export const styles = StyleSheet.create({
   card: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#121A24', // surface
+    justifyContent: 'space-between',
+    backgroundColor: '#121A24',
     borderWidth: 1,
-    borderColor: '#1E2A3A', // border
+    borderColor: '#1E2A3A',
     padding: 12,
     borderRadius: 16,
   },
@@ -18,17 +19,9 @@ export const styles = StyleSheet.create({
 
   content: {
     flex: 1,
-    gap: 6,
-  },
-
-  topRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 10,
   },
 
   itemName: {
-    flex: 1,
     fontSize: 16,
     fontWeight: '800',
     color: '#E9F0FF', // text primary
@@ -47,43 +40,16 @@ export const styles = StyleSheet.create({
     color: '#E9F0FF',
   },
 
-  statusPill: {
-    paddingHorizontal: 10,
-    paddingVertical: 6,
-    borderRadius: 999,
-    backgroundColor: '#0B0F14', // background
-    borderWidth: 1,
-    borderColor: '#1E2A3A',
-  },
-
-  statusPillSoon: {
-    // subtle "warning" using primary + opacity-like feel (still within palette)
-    backgroundColor: '#121A24',
-    borderColor: '#1D4ED8',
-  },
-
-  statusPillExpired: {
-    backgroundColor: '#121A24',
-    borderColor: '#6F7E94',
-  },
-
-  statusText: {
-    fontSize: 12,
-    fontWeight: '700',
-    color: '#A9B6C9',
-  },
-
-  statusTextSoon: {
-    color: '#E9F0FF',
-  },
-
-  statusTextExpired: {
-    color: '#E9F0FF',
-  },
+  // rigthIcons: {
+  //   // flex: 1,
+  //   paddingHorizontal: 8,
+  //   flexDirection: 'row',
+  //   justifyContent: 'space-between',
+  //   alignItems: 'center',
+  // },
 
   qtyBadge: {
-    marginLeft: 10,
-    paddingHorizontal: 10,
+    paddingHorizontal: 8,
     paddingVertical: 6,
     borderRadius: 12,
     backgroundColor: '#0B0F14',
@@ -95,5 +61,10 @@ export const styles = StyleSheet.create({
     fontSize: 13,
     fontWeight: '800',
     color: '#E9F0FF',
+  },
+
+  deleteButtonAbsolute: {
+    marginLeft: 12,
+    opacity: 0.7,
   },
 });

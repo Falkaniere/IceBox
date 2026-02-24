@@ -1,3 +1,5 @@
+import { ExpiryStatus } from '@/app/utils/expiry';
+
 export type FridgeLocation = 'FRIDGE' | 'FREEZER';
 
 export type ExpirationStatus = 'OK' | 'WARNING' | 'EXPIRED';
@@ -33,7 +35,7 @@ export type FridgeItem = {
   expiresAt: string; // ISO string
   category: ProductCategory;
 
-  expirationStatus?: ExpirationStatus;
+  expirationStatus?: ExpiryStatus;
 
   createdAt: string;
 };
