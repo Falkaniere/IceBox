@@ -35,4 +35,12 @@ export const styles = StyleSheet.create({
     fontSize: 13,
     lineHeight: 18,
   },
+
+  deleteAction: {
+    backgroundColor: '#1E2A3A', // border token (sem vermelho)
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 80,
+    borderRadius: 14,
+  },
 });

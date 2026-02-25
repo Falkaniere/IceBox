@@ -34,7 +34,10 @@ export function getExpiryStatus(
   return 'fresh';
 }
 
-export function formatExpiryLabel(status: ExpiryStatus, expiresAtISO: string) {
+export function formatExpiryLabel(
+  status: ExpiryStatus | undefined,
+  expiresAtISO: string,
+) {
   // For now: keep it simple and show the ISO date part (YYYY-MM-DD).
   // Later we can format using Intl.DateTimeFormat based on locale.
   const short = expiresAtISO.split('T')[0];

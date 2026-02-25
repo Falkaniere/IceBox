@@ -1,20 +1,34 @@
-import firestore from '@react-native-firebase/firestore';
-import { FridgeItem } from '@/features/fridge/model/fridgeItem';
+import {
+  getFirestore,
+  collection,
+  doc,
+  addDoc,
+  setDoc,
+  getDoc,
+  deleteDoc,
+  onSnapshot,
+  query,
+  orderBy,
+  serverTimestamp,
+} from '@react-native-firebase/firestore';
 
-const db = firestore();
+import { FridgeItem } from '@/features/fridge/model/fridgeItem';
+import { DocumentData } from '@react-native-firebase/app/lib/internal/web/firebaseFirestore';
+
+const db = getFirestore();
 
 /**
  * Cria a geladeira padrão para o usuário
  */
 export async function createDefaultFridge(uid: string) {
-  const fridgeRef = await db.collection('fridges').add({
+  const fridgeRef = await addDoc(collection(db, 'fridges'), {
     name: 'My Fridge',
     members: [uid],
     owner: uid,
-    createdAt: firestore.FieldValue.serverTimestamp(),
+    createdAt: serverTimestamp(),
   });
 
-  await db.collection('users').doc(uid).set({
+  await setDoc(doc(db, 'users', uid), {
     defaultFridgeId: fridgeRef.id,
   });
 
@@ -25,9 +39,10 @@ export async function createDefaultFridge(uid: string) {
  * Busca o defaultFridgeId do usuário
  */
 export async function getUserFridgeId(uid: string) {
-  const userDoc = await db.collection('users').doc(uid).get();
+  const userRef = doc(db, 'users', uid);
+  const userDoc = await getDoc(userRef);
 
-  if (!userDoc.exists) return null;
+  if (!userDoc.exists()) return null;
 
   return userDoc.data()?.defaultFridgeId ?? null;
 }
@@ -39,43 +54,46 @@ export function listenToFridgeItems(
   fridgeId: string,
   callback: (items: FridgeItem[]) => void,
 ) {
-  return db
-    .collection('fridges')
-    .doc(fridgeId)
-    .collection('items')
-    .orderBy('createdAt', 'desc')
-    .onSnapshot(snapshot => {
-      const items = snapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data(),
-      })) as FridgeItem[];
+  const itemsRef = collection(db, 'fridges', fridgeId, 'items');
+  const q = query(itemsRef, orderBy('createdAt', 'desc'));
 
-      callback(items);
-    });
+  return onSnapshot(q, snapshot => {
+    const items = snapshot.docs.map((docSnapshot: any) => {
+      const data = docSnapshot.data();
+
+      return {
+        ...data,
+        id: docSnapshot.id, // ID SEMPRE por último
+      };
+    }) as FridgeItem[];
+
+    callback(items);
+  });
 }
 
 /**
  * Adiciona item à geladeira
  */
 export async function addFridgeItem(fridgeId: string, item: FridgeItem) {
-  await db
-    .collection('fridges')
-    .doc(fridgeId)
-    .collection('items')
-    .add({
-      ...item,
-      createdAt: firestore.FieldValue.serverTimestamp(),
-    });
+  const { id, ...rest } = item; // remove id
+
+  const itemsRef = collection(db, 'fridges', fridgeId, 'items');
+
+  await addDoc(itemsRef, {
+    ...rest,
+    createdAt: serverTimestamp(),
+  });
 }
 
 /**
  * Remove item
  */
 export async function removeFridgeItem(fridgeId: string, itemId: string) {
-  await db
-    .collection('fridges')
-    .doc(fridgeId)
-    .collection('items')
-    .doc(itemId)
-    .delete();
+  try {
+    const itemRef = doc(db, 'fridges', fridgeId, 'items', itemId);
+
+    await deleteDoc(itemRef);
+  } catch (error) {
+    console.error('Delete error:', error);
+  }
 }
