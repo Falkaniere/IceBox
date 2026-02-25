@@ -8672,25 +8672,25 @@ react@19.1.0:
   resolved "https://registry.yarnpkg.com/react/-/react-19.1.0.tgz#926864b6c48da7627f004795d6cce50e90793b75"
   integrity sha512-FS+XFBNvn3GTAWq26joslQgWNoFu08F4kl0J4CgdNKADkdSGXQyTCnKteIAJy96Br6YbpEU1LSzV5dYtjMkMDg==
 
-reactotron-core-client@2.9.7:
-  version "2.9.7"
-  resolved "https://registry.yarnpkg.com/reactotron-core-client/-/reactotron-core-client-2.9.7.tgz#c1fd2842b095dbd2c7522cfc6bd59e34768038eb"
-  integrity sha512-QWd0ekjU71CQL70J87NT5f7cmIJAMVZND+YgOaaUgmgFjhiXzHrpeIWs19+IFQPVLsJr97gdi58X8Y62Hchs9w==
+reactotron-core-client@2.9.9:
+  version "2.9.9"
+  resolved "https://registry.yarnpkg.com/reactotron-core-client/-/reactotron-core-client-2.9.9.tgz#93ac2122d215084502fd87bf56e8fde8fef07879"
+  integrity sha512-caI6ZWpfV/gNeCBhm6alxuCpOxYEFxg9FsgVaOXJWZeKjK2egjxkXcUEFWeS3b9mC6Kwi7Wuu79zfeGtkbdAYw==
   dependencies:
-    reactotron-core-contract "0.2.5"
+    reactotron-core-contract "0.3.2"
 
-reactotron-core-contract@0.2.5:
-  version "0.2.5"
-  resolved "https://registry.yarnpkg.com/reactotron-core-contract/-/reactotron-core-contract-0.2.5.tgz#927160c026895798bfe931bd2462fdd5d4e435f9"
-  integrity sha512-pxuXFG1jffAWQSdT0FBws+/Xvl8++6T6WrAi4g7AxIZU5FPeut2wq//0yDhDWx6lF82eAo5JTZK7zECQy45QxA==
+reactotron-core-contract@0.3.2:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/reactotron-core-contract/-/reactotron-core-contract-0.3.2.tgz#b88bb7b411a6247b02dae90234c5ea0755738acf"
+  integrity sha512-39ZNLfxxV7WEOszekIRg56F6VFZrQk7+Lei+8MccNESX3VbQzs1uex/GNesxk6CMTS6ytwqYIBAgLyc9WX/PaA==
 
-reactotron-react-native@^5.1.15:
-  version "5.1.15"
-  resolved "https://registry.yarnpkg.com/reactotron-react-native/-/reactotron-react-native-5.1.15.tgz#ccf1e8e9cdb9becd81c332b657962cd1f1e42414"
-  integrity sha512-6uUqRirt5rflxr71w4tOsP8o02cGk7D1dne0E32+8c8/EX6YrIs5x5v+ghRvIGwRJ7cDwdvVWayWD2Qa1msY8w==
+reactotron-react-native@^5.1.18:
+  version "5.1.18"
+  resolved "https://registry.yarnpkg.com/reactotron-react-native/-/reactotron-react-native-5.1.18.tgz#50e3645d1c9431b684f0a605923eb8beb4cba1b8"
+  integrity sha512-Nyb/w7tRQICtfvjAJSN6Q/3aRO8L6eTfEcWpDR/atUyoINkyzducMx6yXA+sz1mazxivY16N3VPkmQ1XohQAcg==
   dependencies:
     mitt "^3.0.1"
-    reactotron-core-client "2.9.7"
+    reactotron-core-client "2.9.9"
 
 read-cmd-shim@^5.0.0:
   version "5.0.0"
