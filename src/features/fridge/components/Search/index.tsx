@@ -4,6 +4,7 @@ import { Pressable, TextInput, View } from 'react-native';
 import Filters, { FridgeFilter } from './filters';
 import { styles } from './styles';
 import { Search as SearchIcon, X } from 'lucide-react-native';
+import { useAppTranslation } from '@/app/i18n/useAppTranslation';
 
 type SearchProps = {
   query: string;
@@ -19,6 +20,7 @@ export default function Search({
   onChangeFilter,
 }: SearchProps) {
   const showClear = useMemo(() => query.trim().length > 0, [query]);
+  const { t } = useAppTranslation('fridge');
 
   const handleClear = () => onChangeQuery('');
 
@@ -33,7 +35,7 @@ export default function Search({
           value={query}
           onChangeText={onChangeQuery}
           style={styles.input}
-          placeholder='Search items...'
+          placeholder={t('search_placeholder')}
           placeholderTextColor='#6F7E94'
           autoCorrect={false}
           autoCapitalize='none'

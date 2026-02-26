@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Pressable, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import DateTimePicker from '@react-native-community/datetimepicker';
-
 import { X } from 'lucide-react-native';
 import { nanoid } from 'nanoid/non-secure';
 
 import { useFridge } from '@/features/fridge/providers/FridgeProvider';
 import { detectCategory } from '@/features/products/utils/detectCategory';
+import { useAppTranslation } from '@/app/i18n/useAppTranslation';
 import { styles } from './styles';
 
 type Props = {
@@ -15,6 +15,8 @@ type Props = {
 };
 
 export default function AddItemToFridge({ onClose }: Props) {
+  const { t } = useAppTranslation('fridge');
+  const { t: tCommon } = useAppTranslation('common');
   const { addItem } = useFridge();
 
   const [date, setDate] = useState<Date | null>(null);
@@ -22,12 +24,9 @@ export default function AddItemToFridge({ onClose }: Props) {
   const [name, setName] = useState('');
   const [qty, setQty] = useState('1');
 
-  function onChangeDate(event: any, selectedDate?: Date) {
+  function onChangeDate(_: any, selectedDate?: Date) {
     setShowPicker(false);
-
-    if (selectedDate) {
-      setDate(selectedDate);
-    }
+    if (selectedDate) setDate(selectedDate);
   }
 
   function handleSave() {
@@ -48,28 +47,24 @@ export default function AddItemToFridge({ onClose }: Props) {
   return (
     <View style={styles.overlay}>
       <SafeAreaView style={styles.container}>
-        {/* Header */}
         <View style={styles.header}>
-          <Text style={styles.title}>Add Item</Text>
+          <Text style={styles.title}>{t('add_item_title')}</Text>
           <Pressable onPress={onClose} hitSlop={10}>
             <X size={20} color='#E9F0FF' />
           </Pressable>
         </View>
 
-        {/* Surface Card */}
         <View style={styles.surface}>
-          {/* Name */}
-          <Text style={styles.label}>Name</Text>
+          <Text style={styles.label}>{t('name_label')}</Text>
           <TextInput
             style={styles.input}
-            placeholder='e.g. Milk'
+            placeholder={t('name_placeholder')}
             placeholderTextColor='#6F7E94'
             value={name}
             onChangeText={setName}
           />
 
-          {/* Quantity */}
-          <Text style={styles.label}>Quantity</Text>
+          <Text style={styles.label}>{t('quantity_label')}</Text>
           <TextInput
             style={styles.input}
             keyboardType='numeric'
@@ -77,16 +72,11 @@ export default function AddItemToFridge({ onClose }: Props) {
             onChangeText={setQty}
           />
 
-          {/* Expiration */}
-          <Text style={styles.label}>Expiration Date</Text>
+          <Text style={styles.label}>{t('expiration_label')}</Text>
 
           <Pressable style={styles.input} onPress={() => setShowPicker(true)}>
-            <Text
-              style={{
-                color: date ? '#E9F0FF' : '#6F7E94',
-              }}
-            >
-              {date ? date.toISOString().split('T')[0] : 'Select date'}
+            <Text style={{ color: date ? '#E9F0FF' : '#6F7E94' }}>
+              {date ? date.toISOString().split('T')[0] : t('select_date')}
             </Text>
           </Pressable>
 
@@ -101,20 +91,13 @@ export default function AddItemToFridge({ onClose }: Props) {
           )}
         </View>
 
-        {/* Actions */}
         <View style={styles.actions}>
-          <Pressable
-            style={({ pressed }) => [
-              styles.primaryButton,
-              pressed && styles.buttonPressed,
-            ]}
-            onPress={handleSave}
-          >
-            <Text style={styles.primaryButtonText}>Save</Text>
+          <Pressable style={styles.primaryButton} onPress={handleSave}>
+            <Text style={styles.primaryButtonText}>{tCommon('save')}</Text>
           </Pressable>
 
           <Pressable onPress={onClose}>
-            <Text style={styles.cancelText}>Cancel</Text>
+            <Text style={styles.cancelText}>{tCommon('cancel')}</Text>
           </Pressable>
         </View>
       </SafeAreaView>

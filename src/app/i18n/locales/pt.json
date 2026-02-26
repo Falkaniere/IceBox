@@ -1,0 +1,8 @@
+{
+  "common": {
+    "add": "Adicionar",
+    "delete": "Excluir",
+    "empty_title": "Sua geladeira está vazia",
+    "empty_subtitle": "Toque no + para adicionar seu primeiro item."
+  }
+}

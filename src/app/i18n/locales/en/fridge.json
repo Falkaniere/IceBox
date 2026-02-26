@@ -1,0 +1,13 @@
+{
+  "title": "My Fridge",
+  "empty_title": "Your fridge is empty",
+  "empty_subtitle": "Tap the + button to add your first item.",
+  "search_placeholder": "Search items...",
+  "clear_search": "Clear search",
+  "add_item_title": "Add Item",
+  "name_label": "Name",
+  "name_placeholder": "e.g. Milk",
+  "quantity_label": "Quantity",
+  "expiration_label": "Expiration Date",
+  "select_date": "Select date"
+}
