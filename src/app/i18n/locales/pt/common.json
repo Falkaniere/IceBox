@@ -5,5 +5,8 @@
   "sign_out": "Sair",
   "signing_out": "Saindo...",
   "signing_in": "Entrando...",
-  "dismiss": "Fechar"
+  "dismiss": "Fechar",
+  "confirm_delete_title": "Excluir item?",
+  "confirm_delete_message": "Essa ação não pode ser desfeita.",
+  "delete": "Excluir"
 }
