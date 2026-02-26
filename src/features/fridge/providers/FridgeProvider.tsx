@@ -14,6 +14,7 @@ import {
   getUserFridgeId,
   listenToFridgeItems,
   removeFridgeItem,
+  updateFridgeItem,
 } from '@/features/fridge/api/fridgeService';
 
 type FridgeContextType = {
@@ -21,6 +22,7 @@ type FridgeContextType = {
   loading: boolean;
   addItem: (item: FridgeItem) => Promise<void>;
   removeItem: (itemId: string) => Promise<void>;
+  updateItem: (itemId: string, updates: Partial<FridgeItem>) => Promise<void>;
 };
 
 const FridgeContext = createContext<FridgeContextType | null>(null);
@@ -82,6 +84,12 @@ export function FridgeProvider({ children }: { children: React.ReactNode }) {
     await removeFridgeItem(fridgeId, itemId);
   }
 
+  async function updateItem(itemId: string, updates: Partial<FridgeItem>) {
+    if (!fridgeId) return;
+
+    await updateFridgeItem(fridgeId, itemId, updates);
+  }
+
   return (
     <FridgeContext.Provider
       value={{
@@ -89,6 +97,7 @@ export function FridgeProvider({ children }: { children: React.ReactNode }) {
         loading,
         addItem,
         removeItem,
+        updateItem,
       }}
     >
       {children}

@@ -14,42 +14,50 @@ import { useFridge } from '@/features/fridge/providers/FridgeProvider';
 //   return 'Fresh';
 // }
 
-export default function FridgeItem({ item }: { item: FridgeItemType }) {
+export default function FridgeItem({
+  item,
+  onEdit,
+}: {
+  item: FridgeItemType;
+  onEdit: (item: FridgeItemType) => void;
+}) {
   const { removeItem } = useFridge();
   const status = item.expirationStatus;
 
   return (
-    <View style={styles.card}>
-      <Text style={styles.itemIcon}>{categoryIconMap[item.category]}</Text>
+    <Pressable onPress={() => onEdit(item)}>
+      <View style={styles.card}>
+        <Text style={styles.itemIcon}>{categoryIconMap[item.category]}</Text>
 
-      <View style={styles.content}>
-        <Text style={styles.itemName} numberOfLines={1}>
-          {item.name}
-        </Text>
+        <View style={styles.content}>
+          <Text style={styles.itemName} numberOfLines={1}>
+            {item.name}
+          </Text>
 
-        <Text
-          style={[
-            styles.itemDate,
-            status === 'expired' && styles.itemDateExpired,
-            status === 'soon' && styles.itemDateSoon,
-          ]}
-          numberOfLines={1}
+          <Text
+            style={[
+              styles.itemDate,
+              status === 'expired' && styles.itemDateExpired,
+              status === 'soon' && styles.itemDateSoon,
+            ]}
+            numberOfLines={1}
+          >
+            {formatExpiryLabel(status, item.expiresAt)}
+          </Text>
+        </View>
+
+        <View style={styles.qtyBadge}>
+          <Text style={styles.qtyText}>x{item.qty}</Text>
+        </View>
+
+        <Pressable
+          onPress={() => removeItem(item.id)}
+          style={styles.deleteButtonAbsolute}
+          hitSlop={12}
         >
-          {formatExpiryLabel(status, item.expiresAt)}
-        </Text>
+          <Trash2 size={20} color='#6F7E94' />
+        </Pressable>
       </View>
-
-      <View style={styles.qtyBadge}>
-        <Text style={styles.qtyText}>x{item.qty}</Text>
-      </View>
-
-      <Pressable
-        onPress={() => removeItem(item.id)}
-        style={styles.deleteButtonAbsolute}
-        hitSlop={12}
-      >
-        <Trash2 size={20} color='#6F7E94' />
-      </Pressable>
-    </View>
+    </Pressable>
   );
 }

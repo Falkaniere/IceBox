@@ -10,14 +10,17 @@ import AddItemToFridge from '@/features/fridge/components/AddItem';
 import { useFridge } from '@/features/fridge/providers/FridgeProvider';
 import { getExpiryStatus } from '@/app/utils/expiry';
 import { styles } from './styles';
+import { FridgeItem } from '@/features/fridge/model/fridgeItem';
+
+type FilterType = 'all' | 'expired' | 'soon';
 
 export default function HomeScreen() {
   const { items } = useFridge();
 
   const [query, setQuery] = useState('');
-  const [filter, setFilter] = useState('all');
+  const [filter, setFilter] = useState<FilterType>('all');
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-
+  const [selectedItem, setSelectedItem] = useState<FridgeItem | null>(null);
   const enrichedData = useMemo(() => {
     return items.map(item => ({
       ...item,
@@ -41,18 +44,35 @@ export default function HomeScreen() {
     });
   }, [enrichedData, query, filter]);
 
+  function handleAddPress() {
+    setSelectedItem(null);
+    setIsAddModalOpen(true);
+  }
+
+  function handleEdit(item: FridgeItem) {
+    setSelectedItem(item);
+    setIsAddModalOpen(true);
+  }
+
+  function handleCloseModal() {
+    setIsAddModalOpen(false);
+    setSelectedItem(null);
+  }
+
   return (
     <>
       <SafeAreaView style={styles.safeArea} edges={['top']}>
         <View style={styles.container}>
-          <Header onAddPress={() => setIsAddModalOpen(true)} />
+          <Header onAddPress={handleAddPress} />
+
           <Search
             query={query}
             onChangeQuery={setQuery}
             filter={filter}
             onChangeFilter={setFilter}
           />
-          <FridgeList data={filteredData} />
+
+          <FridgeList data={filteredData} onEdit={handleEdit} />
         </View>
       </SafeAreaView>
 
@@ -61,8 +81,12 @@ export default function HomeScreen() {
         animationType='slide'
         presentationStyle='fullScreen'
         transparent
+        onRequestClose={handleCloseModal}
       >
-        <AddItemToFridge onClose={() => setIsAddModalOpen(false)} />
+        <AddItemToFridge
+          onClose={handleCloseModal}
+          item={selectedItem ?? undefined}
+        />
       </Modal>
     </>
   );

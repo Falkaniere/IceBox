@@ -10,6 +10,7 @@ import {
   query,
   orderBy,
   serverTimestamp,
+  updateDoc,
 } from '@react-native-firebase/firestore';
 
 import { FridgeItem } from '@/features/fridge/model/fridgeItem';
@@ -96,4 +97,16 @@ export async function removeFridgeItem(fridgeId: string, itemId: string) {
   } catch (error) {
     console.error('Delete error:', error);
   }
+}
+
+export async function updateFridgeItem(
+  fridgeId: string,
+  itemId: string,
+  updates: Partial<Omit<FridgeItem, 'id'>>,
+) {
+  const itemRef = doc(db, 'fridges', fridgeId, 'items', itemId);
+
+  await updateDoc(itemRef, {
+    ...updates,
+  });
 }

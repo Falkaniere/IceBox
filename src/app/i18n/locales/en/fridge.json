@@ -5,6 +5,7 @@
   "search_placeholder": "Search items...",
   "clear_search": "Clear search",
   "add_item_title": "Add Item",
+  "edit_item_title": "Edit Item",
   "name_label": "Name",
   "name_placeholder": "e.g. Milk",
   "quantity_label": "Quantity",
