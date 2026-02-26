@@ -3,8 +3,10 @@ import { View, Text, Pressable, ActivityIndicator } from 'react-native';
 import { useAuth } from '@/app/providers/AuthProvider';
 import { styles } from './styles';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useAppTranslation } from '@/app/i18n/useAppTranslation';
 
 export default function LoginScreen() {
+  const { t } = useAppTranslation('auth');
   const { signInWithGoogle, signingIn, error, clearError } = useAuth();
 
   const handleGoogleSignIn = async () => {
@@ -19,19 +21,16 @@ export default function LoginScreen() {
           <Text style={styles.logoText}>IceBox</Text>
         </View>
 
-        <Text style={styles.title}>Keep your fridge under control</Text>
-        <Text style={styles.subtitle}>
-          Scan products, set expiration dates, and get alerts before food goes
-          bad.
-        </Text>
+        <Text style={styles.title}>{t('hero_title')}</Text>
+        <Text style={styles.subtitle}>{t('hero_subtitle')}</Text>
 
         {error ? (
           <View style={styles.errorBox}>
-            <Text style={styles.errorTitle}>Something went wrong</Text>
+            <Text style={styles.errorTitle}>{t('error_title')}</Text>
             <Text style={styles.errorMessage}>{error.message}</Text>
 
             <Pressable onPress={clearError} style={styles.errorDismiss}>
-              <Text style={styles.errorDismissText}>Dismiss</Text>
+              <Text style={styles.errorDismissText}>{t('dismiss')}</Text>
             </Pressable>
           </View>
         ) : null}
@@ -51,16 +50,14 @@ export default function LoginScreen() {
           {signingIn ? (
             <View style={styles.buttonContent}>
               <ActivityIndicator />
-              <Text style={styles.buttonText}>Signing in...</Text>
+              <Text style={styles.buttonText}>{t('signing_in')}</Text>
             </View>
           ) : (
-            <Text style={styles.buttonText}>Continue with Google</Text>
+            <Text style={styles.buttonText}>{t('continue_google')}</Text>
           )}
         </Pressable>
 
-        <Text style={styles.legalText}>
-          By continuing, you agree to our Terms and Privacy Policy.
-        </Text>
+        <Text style={styles.legalText}>{t('legal_text')}</Text>
       </View>
     </SafeAreaView>
   );

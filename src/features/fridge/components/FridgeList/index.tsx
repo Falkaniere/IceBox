@@ -3,12 +3,15 @@ import { FlatList, ListRenderItem, Text, View } from 'react-native';
 
 import FridgeItem from '@/features/fridge/components/FridgeItem';
 import { styles } from './styles';
+import { useAppTranslation } from '@/app/i18n/useAppTranslation';
 
 type FridgeListProps = {
   data: any[];
 };
 
 export default function FridgeList({ data }: FridgeListProps) {
+  const { t } = useAppTranslation('fridge');
+
   const renderItem: ListRenderItem<any> = ({ item }) => {
     return <FridgeItem item={item} />;
   };
@@ -19,10 +22,8 @@ export default function FridgeList({ data }: FridgeListProps) {
 
   const EmptyState = () => (
     <View style={styles.emptyContainer}>
-      <Text style={styles.emptyTitle}>Your fridge is empty</Text>
-      <Text style={styles.emptySubtitle}>
-        Tap the + button to add your first item.
-      </Text>
+      <Text style={styles.emptyTitle}>{t('empty_title')}</Text>
+      <Text style={styles.emptySubtitle}>{t('empty_subtitle')}</Text>
     </View>
   );
 

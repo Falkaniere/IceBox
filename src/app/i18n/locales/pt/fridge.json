@@ -1,0 +1,13 @@
+{
+  "title": "Minha Geladeira",
+  "empty_title": "Sua geladeira está vazia",
+  "empty_subtitle": "Toque no + para adicionar seu primeiro item.",
+  "search_placeholder": "Buscar itens...",
+  "clear_search": "Limpar busca",
+  "add_item_title": "Adicionar Item",
+  "name_label": "Nome",
+  "name_placeholder": "ex: Leite",
+  "quantity_label": "Quantidade",
+  "expiration_label": "Data de validade",
+  "select_date": "Selecionar data"
+}
