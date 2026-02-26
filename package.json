@@ -11,6 +11,7 @@
     "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix"
   },
   "dependencies": {
+    "@notifee/react-native": "^9.1.8",
     "@react-native-async-storage/async-storage": "^2.2.0",
     "@react-native-community/datetimepicker": "^8.6.0",
     "@react-native-firebase/app": "^23.8.3",
@@ -27,6 +28,7 @@
     "react-native": "0.81.1",
     "react-native-emoji": "^1.8.0",
     "react-native-gesture-handler": "^2.30.0",
+    "react-native-haptic-feedback": "^2.3.3",
     "react-native-localize": "^3.7.0",
     "react-native-safe-area-context": "^5.6.2",
     "react-native-screens": "^4.19.0",

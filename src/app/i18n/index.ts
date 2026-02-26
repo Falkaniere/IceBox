@@ -5,21 +5,25 @@ import * as RNLocalize from 'react-native-localize';
 import commonEN from './locales/en/common.json';
 import fridgeEN from './locales/en/fridge.json';
 import authEN from './locales/en/auth.json';
+import notificationEN from './locales/pt/notification.json';
 
 import commonPT from './locales/pt/common.json';
 import fridgePT from './locales/pt/fridge.json';
 import authPT from './locales/pt/auth.json';
+import notificationPT from './locales/pt/notification.json';
 
 const resources = {
   en: {
     common: commonEN,
     fridge: fridgeEN,
     auth: authEN,
+    notification: notificationEN,
   },
   pt: {
     common: commonPT,
     fridge: fridgePT,
     auth: authPT,
+    notification: notificationPT,
   },
 };
 
@@ -34,7 +38,7 @@ i18n.use(initReactI18next).init({
   lng: getDeviceLanguage(),
   fallbackLng: 'en',
 
-  ns: ['common', 'fridge', 'auth'],
+  ns: ['common', 'fridge', 'auth', 'notification'],
   defaultNS: 'common',
 
   interpolation: {

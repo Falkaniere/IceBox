@@ -1,0 +1,6 @@
+{
+  "notification_expiring_title": "Vai vencer em breve",
+  "notification_expiring_body": "{{item}} vence amanhã.",
+  "notification_expired_title": "Vence hoje",
+  "notification_expired_body": "{{item}} vence hoje."
+}

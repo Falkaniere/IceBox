@@ -1,0 +1,6 @@
+{
+  "notification_expiring_title": "Expiring soon",
+  "notification_expiring_body": "{{item}} expires tomorrow.",
+  "notification_expired_title": "Expired today",
+  "notification_expired_body": "{{item}} expires today."
+}
