@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, Pressable } from 'react-native';
+import { Text, View, Pressable, Alert } from 'react-native';
 import { Trash2 } from 'lucide-react-native';
 
 import { formatExpiryLabel, ExpiryStatus } from '@/app/utils/expiry';
@@ -7,6 +7,7 @@ import { styles } from './styles';
 import { categoryIconMap } from '@/features/fridge/utils/categoryIcon';
 import { FridgeItem as FridgeItemType } from '@/features/fridge/model/fridgeItem';
 import { useFridge } from '@/features/fridge/providers/FridgeProvider';
+import { useAppTranslation } from '@/app/i18n/useAppTranslation';
 
 // function getStatusLabel(status: ExpiryStatus | undefined) {
 //   if (status === 'expired') return 'Expired';
@@ -22,6 +23,22 @@ export default function FridgeItem({
   onEdit: (item: FridgeItemType) => void;
 }) {
   const { removeItem } = useFridge();
+  const { t } = useAppTranslation('common');
+
+  function handleDelete() {
+    Alert.alert(t('confirm_delete_title'), t('confirm_delete_message'), [
+      {
+        text: t('cancel'),
+        style: 'cancel',
+      },
+      {
+        text: t('delete'),
+        style: 'destructive',
+        onPress: () => removeItem(item.id),
+      },
+    ]);
+  }
+
   const status = item.expirationStatus;
 
   return (
@@ -51,7 +68,7 @@ export default function FridgeItem({
         </View>
 
         <Pressable
-          onPress={() => removeItem(item.id)}
+          onPress={handleDelete}
           style={styles.deleteButtonAbsolute}
           hitSlop={12}
         >
