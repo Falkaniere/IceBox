@@ -9,20 +9,24 @@ import { useFridge } from '@/features/fridge/providers/FridgeProvider';
 import { detectCategory } from '@/features/products/utils/detectCategory';
 import { useAppTranslation } from '@/app/i18n/useAppTranslation';
 import { styles } from './styles';
+import { FridgeItem as FridgeItemType } from '@/features/fridge/model/fridgeItem';
 
 type Props = {
   onClose: () => void;
+  item?: FridgeItemType;
 };
 
-export default function AddItemToFridge({ onClose }: Props) {
+export default function AddItemToFridge({ onClose, item }: Props) {
   const { t } = useAppTranslation('fridge');
   const { t: tCommon } = useAppTranslation('common');
-  const { addItem } = useFridge();
+  const { addItem, updateItem } = useFridge();
 
-  const [date, setDate] = useState<Date | null>(null);
   const [showPicker, setShowPicker] = useState(false);
-  const [name, setName] = useState('');
-  const [qty, setQty] = useState('1');
+  const [name, setName] = useState(item?.name ?? '');
+  const [qty, setQty] = useState(item ? String(item.qty) : '1');
+  const [date, setDate] = useState<Date | null>(
+    item ? new Date(item.expiresAt) : null,
+  );
 
   function onChangeDate(_: any, selectedDate?: Date) {
     setShowPicker(false);
@@ -32,14 +36,22 @@ export default function AddItemToFridge({ onClose }: Props) {
   function handleSave() {
     if (!name || !date) return;
 
-    addItem({
-      id: nanoid(),
+    const payload = {
       name,
       qty: Number(qty),
       expiresAt: date.toISOString(),
       category: detectCategory(name),
-      createdAt: new Date().toISOString(),
-    });
+    };
+
+    if (item) {
+      updateItem(item.id, payload);
+    } else {
+      addItem({
+        id: nanoid(),
+        ...payload,
+        createdAt: new Date().toISOString(),
+      });
+    }
 
     onClose();
   }
@@ -48,7 +60,9 @@ export default function AddItemToFridge({ onClose }: Props) {
     <View style={styles.overlay}>
       <SafeAreaView style={styles.container}>
         <View style={styles.header}>
-          <Text style={styles.title}>{t('add_item_title')}</Text>
+          <Text style={styles.title}>
+            {item ? t('edit_item_title') : t('add_item_title')}
+          </Text>
           <Pressable onPress={onClose} hitSlop={10}>
             <X size={20} color='#E9F0FF' />
           </Pressable>
