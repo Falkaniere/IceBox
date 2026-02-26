@@ -10,5 +10,14 @@
   "name_placeholder": "ex: Leite",
   "quantity_label": "Quantidade",
   "expiration_label": "Data de validade",
-  "select_date": "Selecionar data"
+  "select_date": "Selecionar data",
+
+  "notification_week_title": "Vence em uma semana",
+  "notification_week_body": "{{item}} vence em uma semana.",
+
+  "notification_two_days_title": "Vai vencer em breve",
+  "notification_two_days_body": "{{item}} vence em 2 dias.",
+
+  "notification_today_title": "Vence hoje",
+  "notification_today_body": "{{item}} vence hoje."
 }

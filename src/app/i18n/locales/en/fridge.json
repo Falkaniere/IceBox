@@ -10,5 +10,14 @@
   "name_placeholder": "e.g. Milk",
   "quantity_label": "Quantity",
   "expiration_label": "Expiration Date",
-  "select_date": "Select date"
+  "select_date": "Select date",
+
+  "notification_week_title": "Expiring in one week",
+  "notification_week_body": "{{item}} expires in one week.",
+
+  "notification_two_days_title": "Expiring soon",
+  "notification_two_days_body": "{{item}} expires in 2 days.",
+
+  "notification_today_title": "Expires today",
+  "notification_today_body": "{{item}} expires today."
 }

@@ -1,10 +1,4 @@
-import React, {
-  createContext,
-  use,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 
 import { useAuth } from '@/app/providers/AuthProvider';
 import { FridgeItem } from '@/features/fridge/model/fridgeItem';
@@ -16,6 +10,10 @@ import {
   removeFridgeItem,
   updateFridgeItem,
 } from '@/features/fridge/api/fridgeService';
+
+import { scheduleExpiryNotifications } from '@/features/notifications/scheduleExpiryNotification';
+import { cancelExpiryNotifications } from '@/features/notifications/cancelExpiryNotification';
+import { setupNotifications } from '@/app/notifications/setup';
 
 type FridgeContextType = {
   items: FridgeItem[];
@@ -36,6 +34,7 @@ export function FridgeProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (initializing) return;
+
     if (!user?.uid) {
       setItems([]);
       setFridgeId(null);
@@ -47,9 +46,9 @@ export function FridgeProvider({ children }: { children: React.ReactNode }) {
 
     async function init() {
       try {
-        if (!user) return null;
-
         setLoading(true);
+
+        if (!user?.uid) return;
 
         let id = await getUserFridgeId(user.uid);
 
@@ -58,6 +57,7 @@ export function FridgeProvider({ children }: { children: React.ReactNode }) {
         }
 
         setFridgeId(id);
+        await setupNotifications();
 
         unsubscribe = listenToFridgeItems(id, setItems);
       } catch (error) {
@@ -74,20 +74,46 @@ export function FridgeProvider({ children }: { children: React.ReactNode }) {
     };
   }, [user?.uid, initializing]);
 
+  /**
+   * ADD ITEM
+   */
   async function addItem(item: FridgeItem) {
     if (!fridgeId) return;
+
     await addFridgeItem(fridgeId, item);
+
+    await scheduleExpiryNotifications(item.id, item.name, item.expiresAt);
   }
 
+  /**
+   * REMOVE ITEM
+   */
   async function removeItem(itemId: string) {
     if (!fridgeId) return;
+
+    await cancelExpiryNotifications(itemId);
+
     await removeFridgeItem(fridgeId, itemId);
   }
 
+  /**
+   * UPDATE ITEM
+   */
   async function updateItem(itemId: string, updates: Partial<FridgeItem>) {
     if (!fridgeId) return;
 
+    const oldItem = items.find(item => item.id === itemId);
+
+    if (!oldItem) return;
+
+    const finalName = updates.name ?? oldItem.name;
+
+    const finalExpiresAt = updates.expiresAt ?? oldItem.expiresAt;
+
+    await cancelExpiryNotifications(itemId);
     await updateFridgeItem(fridgeId, itemId, updates);
+
+    await scheduleExpiryNotifications(itemId, finalName, finalExpiresAt);
   }
 
   return (
