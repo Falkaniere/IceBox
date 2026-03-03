@@ -14,6 +14,7 @@ import {
 import { scheduleExpiryNotifications } from '@/features/notifications/scheduleExpiryNotification';
 import { cancelExpiryNotifications } from '@/features/notifications/cancelExpiryNotification';
 import { setupNotifications } from '@/app/notifications/setup';
+import RNBootSplash from 'react-native-bootsplash';
 
 type FridgeContextType = {
   items: FridgeItem[];
@@ -31,6 +32,12 @@ export function FridgeProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<FridgeItem[]>([]);
   const [fridgeId, setFridgeId] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (!initializing) {
+      RNBootSplash.hide({ fade: true });
+    }
+  }, [initializing]);
 
   useEffect(() => {
     if (initializing) return;
